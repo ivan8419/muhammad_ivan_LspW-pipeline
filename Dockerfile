@@ -1,4 +1,4 @@
-FROM tensorflow/tfx:1.14.0
+FROM python:3.10-slim
 
 # Set working directory
 WORKDIR /app
