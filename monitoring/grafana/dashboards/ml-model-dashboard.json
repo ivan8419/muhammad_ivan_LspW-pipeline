@@ -1,0 +1,131 @@
+{
+  "annotations": {"list": []},
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {"type": "prometheus", "uid": "Prometheus-muhammad_ivan_LspW"},
+      "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "unit": "short"}, "overrides": []},
+      "gridPos": {"h": 6, "w": 6, "x": 0, "y": 0},
+      "id": 1,
+      "targets": [{"expr": "app_requests_total", "legendFormat": "Total Requests", "refId": "A"}],
+      "title": "Muhammad Ivan LSPW - Total Requests",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {"type": "prometheus", "uid": "Prometheus-muhammad_ivan_LspW"},
+      "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "unit": "reqps"}, "overrides": []},
+      "gridPos": {"h": 6, "w": 6, "x": 6, "y": 0},
+      "id": 2,
+      "targets": [{"expr": "rate(app_requests_total[5m])", "legendFormat": "Request Rate", "refId": "A"}],
+      "title": "Muhammad Ivan LSPW - Request Rate",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {"type": "prometheus", "uid": "Prometheus-muhammad_ivan_LspW"},
+      "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "unit": "short"}, "overrides": []},
+      "gridPos": {"h": 6, "w": 6, "x": 12, "y": 0},
+      "id": 3,
+      "targets": [{"expr": "app_predictions_total", "legendFormat": "Total Predictions", "refId": "A"}],
+      "title": "Muhammad Ivan LSPW - Total Predictions",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {"type": "prometheus", "uid": "Prometheus-muhammad_ivan_LspW"},
+      "fieldConfig": {"defaults": {"color": {"mode": "thresholds"}, "unit": "short"}, "overrides": []},
+      "gridPos": {"h": 6, "w": 6, "x": 18, "y": 0},
+      "id": 4,
+      "targets": [{"expr": "up{job=\"muhammad_ivan_LspW-model\"}", "legendFormat": "Model Status", "refId": "A"}],
+      "title": "Muhammad Ivan LSPW - Model Status",
+      "type": "stat"
+    },
+    {
+      "datasource": {"type": "prometheus", "uid": "Prometheus-muhammad_ivan_LspW"},
+      "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "unit": "s"}, "overrides": []},
+      "gridPos": {"h": 6, "w": 6, "x": 0, "y": 6},
+      "id": 5,
+      "targets": [{"expr": "rate(app_prediction_latency_seconds_sum[5m]) / rate(app_prediction_latency_seconds_count[5m])", "legendFormat": "Avg Latency", "refId": "A"}],
+      "title": "Muhammad Ivan LSPW - Avg Latency",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {"type": "prometheus", "uid": "Prometheus-muhammad_ivan_LspW"},
+      "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "unit": "short"}, "overrides": []},
+      "gridPos": {"h": 6, "w": 6, "x": 6, "y": 6},
+      "id": 6,
+      "targets": [{"expr": "app_prediction_latency_seconds_count", "legendFormat": "Prediction Count", "refId": "A"}],
+      "title": "Muhammad Ivan LSPW - Prediction Count",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {"type": "prometheus", "uid": "Prometheus-muhammad_ivan_LspW"},
+      "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "unit": "short"}, "overrides": []},
+      "gridPos": {"h": 6, "w": 6, "x": 12, "y": 6},
+      "id": 7,
+      "targets": [{"expr": "rate(app_prediction_latency_seconds_sum[5m])", "legendFormat": "Total Latency Sum", "refId": "A"}],
+      "title": "Muhammad Ivan LSPW - Latency Sum",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {"type": "prometheus", "uid": "Prometheus-muhammad_ivan_LspW"},
+      "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "unit": "percentunit"}, "overrides": []},
+      "gridPos": {"h": 6, "w": 6, "x": 18, "y": 6},
+      "id": 8,
+      "targets": [{"expr": "rate(app_predictions_total{result=\"positive\"}[5m]) / rate(app_predictions_total[5m])", "legendFormat": "Positive Rate", "refId": "A"}],
+      "title": "Muhammad Ivan LSPW - Positive Rate",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {"type": "prometheus", "uid": "Prometheus-muhammad_ivan_LspW"},
+      "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "unit": "short"}, "overrides": []},
+      "gridPos": {"h": 6, "w": 6, "x": 0, "y": 12},
+      "id": 9,
+      "targets": [{"expr": "app_errors_total or vector(0)", "legendFormat": "Total Errors", "refId": "A"}],
+      "title": "Muhammad Ivan LSPW - Total Errors",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {"type": "prometheus", "uid": "Prometheus-muhammad_ivan_LspW"},
+      "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "unit": "percentunit"}, "overrides": []},
+      "gridPos": {"h": 6, "w": 6, "x": 6, "y": 12},
+      "id": 10,
+      "targets": [{"expr": "rate(app_errors_total[5m]) or vector(0) / rate(app_requests_total[5m]) or vector(1)", "legendFormat": "Error Rate", "refId": "A"}],
+      "title": "Muhammad Ivan LSPW - Error Rate",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {"type": "prometheus", "uid": "Prometheus-muhammad_ivan_LspW"},
+      "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}, "unit": "short"}, "overrides": []},
+      "gridPos": {"h": 6, "w": 6, "x": 12, "y": 12},
+      "id": 11,
+      "targets": [{"expr": "app_active_requests or vector(0)", "legendFormat": "Active Requests", "refId": "A"}],
+      "title": "Muhammad Ivan LSPW - Active Requests",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {"type": "prometheus", "uid": "Prometheus-muhammad_ivan_LspW"},
+      "fieldConfig": {"defaults": {"color": {"mode": "thresholds"}, "unit": "s"}, "overrides": []},
+      "gridPos": {"h": 6, "w": 6, "x": 18, "y": 12},
+      "id": 12,
+      "targets": [{"expr": "app_model_uptime_seconds", "legendFormat": "Uptime (seconds)", "refId": "A"}],
+      "title": "Muhammad Ivan LSPW - Uptime (seconds)",
+      "type": "stat"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": ["ml-monitoring", "tensorflow-serving", "muhammad_ivan_LspW"],
+  "templating": {"list": []},
+  "time": {"from": "now-15m", "to": "now"},
+  "timepicker": {},
+  "timezone": "",
+  "title": "Muhammad Ivan LSPW - ML Model Monitoring Dashboard",
+  "uid": "ml-model-monitoring",
+  "version": 1,
+  "weekStart": ""
+}
