@@ -4,7 +4,7 @@ FROM tensorflow/tfx:1.14.0
 WORKDIR /app
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
