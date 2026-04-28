@@ -1,10 +1,10 @@
-FROM tensorflow/tfx:1.14.0
+FROM python:3.10-slim
 
 # Set working directory
 WORKDIR /app
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
