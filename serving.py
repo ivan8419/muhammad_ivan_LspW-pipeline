@@ -119,6 +119,46 @@ def metrics():
     return generate_latest(), 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
 
+@app.route('/v1/models/muhammad_ivan_LspW-pipeline/metadata', methods=['GET'])
+def model_metadata():
+    """Model metadata endpoint (simulating TF Serving)."""
+    REQUEST_COUNT.labels(method='GET', endpoint='/metadata', status='200').inc()
+    return jsonify({
+        "model_spec": {
+            "name": "muhammad_ivan_LspW-pipeline",
+            "signature_name": "serving_default",
+            "version": "1"
+        },
+        "metadata": {
+            "signature_def": {
+                "signature_def": {
+                    "serving_default": {
+                        "inputs": {
+                            "age": {"dtype": "DT_FLOAT", "tensor_shape": {"dim": [{"size": "-1"}, {"size": "1"}]}},
+                            "sex": {"dtype": "DT_INT64", "tensor_shape": {"dim": [{"size": "-1"}, {"size": "1"}]}},
+                            "cp": {"dtype": "DT_INT64", "tensor_shape": {"dim": [{"size": "-1"}, {"size": "1"}]}},
+                            "trestbps": {"dtype": "DT_FLOAT", "tensor_shape": {"dim": [{"size": "-1"}, {"size": "1"}]}},
+                            "chol": {"dtype": "DT_FLOAT", "tensor_shape": {"dim": [{"size": "-1"}, {"size": "1"}]}},
+                            "fbs": {"dtype": "DT_INT64", "tensor_shape": {"dim": [{"size": "-1"}, {"size": "1"}]}},
+                            "restecg": {"dtype": "DT_INT64", "tensor_shape": {"dim": [{"size": "-1"}, {"size": "1"}]}},
+                            "thalach": {"dtype": "DT_FLOAT", "tensor_shape": {"dim": [{"size": "-1"}, {"size": "1"}]}},
+                            "exang": {"dtype": "DT_INT64", "tensor_shape": {"dim": [{"size": "-1"}, {"size": "1"}]}},
+                            "oldpeak": {"dtype": "DT_FLOAT", "tensor_shape": {"dim": [{"size": "-1"}, {"size": "1"}]}},
+                            "slope": {"dtype": "DT_INT64", "tensor_shape": {"dim": [{"size": "-1"}, {"size": "1"}]}},
+                            "ca": {"dtype": "DT_INT64", "tensor_shape": {"dim": [{"size": "-1"}, {"size": "1"}]}},
+                            "thal": {"dtype": "DT_INT64", "tensor_shape": {"dim": [{"size": "-1"}, {"size": "1"}]}}
+                        },
+                        "outputs": {
+                            "prediction": {"dtype": "DT_FLOAT", "tensor_shape": {"dim": [{"size": "-1"}, {"size": "1"}]}}
+                        },
+                        "method_name": "tensorflow/serving/predict"
+                    }
+                }
+            }
+        }
+    })
+
+
 @app.route('/', methods=['GET'])
 def index():
     """Root endpoint."""
@@ -126,8 +166,13 @@ def index():
     return jsonify({
         'name': 'Muhammad Ivan LSPW - Heart Disease Prediction API',
         'version': '1.0.0',
-        'model': 'mock',
-        'endpoints': ['/health', '/predict', '/metrics']
+        'model': 'loaded',
+        'endpoints': [
+            '/health', 
+            '/predict', 
+            '/metrics', 
+            '/v1/models/muhammad_ivan_LspW-pipeline/metadata'
+        ]
     })
 
 

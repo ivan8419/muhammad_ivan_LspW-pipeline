@@ -14,7 +14,7 @@ Username dicoding: muhammad_ivan_LspW
 | **Metrik evaluasi** | Binary Accuracy (threshold minimal 0.5) dievaluasi menggunakan TensorFlow Model Analysis (TFMA). Evaluasi dilakukan secara keseluruhan dan per slice berdasarkan fitur `sex`. Model hanya akan di-push ke serving jika melewati threshold. |
 | **Performa model** | Model dievaluasi menggunakan TFMA dengan metrik Binary Accuracy. Berdasarkan hasil tuning hyperparameter dengan Keras Tuner (5 trials), model terbaik mencapai akurasi validasi pada dataset Heart Disease. Hasil evaluasi TFMA menunjukkan model lulus threshold (Binary Accuracy >= 0.5). |
 | **Opsi deployment** | Model dideploy menggunakan **Flask** sebagai web server yang dikemas dalam **Docker container**. Platform cloud yang digunakan adalah **Railway** (alternatif Heroku). Model disimpan dalam format TensorFlow SavedModel dan diakses melalui endpoint REST API `/predict`. |
-| **Web app** | `https://muhammad-ivan-lspw-heart-disease.railway.app` — Endpoint prediksi: `/predict` (POST), Health check: `/health` (GET), Metrics: `/metrics` (GET). |
+| **Web app** | `https://muhammad-ivan-lspw-heart-disease.railway.app` — Tautan metadata: `https://muhammad-ivan-lspw-heart-disease.railway.app/v1/models/muhammad_ivan_LspW-pipeline/metadata` |
 | **Monitoring** | Sistem dimonitor menggunakan **Prometheus** yang dikonfigurasi untuk scraping metrics dari aplikasi Flask di port 8001. Metrics yang dipantau: `app_requests_total` (total request per endpoint dan status), `app_prediction_latency_seconds` (latensi prediksi), dan `app_predictions_total` (total prediksi per label). Dashboard monitoring divisualisasikan menggunakan **Grafana** yang terhubung ke Prometheus datasource, dapat diakses di port 3000. |
 
 ---
@@ -62,10 +62,16 @@ cd monitoring
 docker-compose up -d
 ```
 
+## Monitoring Visualization
+
+Berikut adalah tampilan visualisasi monitoring real-time dari Prometheus yang menunjukkan grafik metrik `app_requests_total`. Grafik ini membuktikan bahwa integrasi monitoring telah berhasil dan sistem dapat melacak performa serta penggunaan model secara real-time.
+
+![Prometheus Monitoring](muhammad_ivan_LspW-monitoring.png)
+
 ## Saran yang Diterapkan
 
 1. ✅ **Hyperparameter Tuning** — Komponen `Tuner` dengan Keras Tuner RandomSearch (5 trials, tuning: num_layers, units, learning_rate)
 2. ✅ **Clean Code** — Kode dipisahkan ke direktori `modules/` dengan docstrings lengkap, type hints, dan pylint score >= 7.0
 3. ✅ **Notebook Pengujian** — `muhammad_ivan_LspW-testing.ipynb` berisi kode untuk melakukan prediction request ke model yang di-deploy di cloud
 4. ✅ **Grafana Dashboard** — Grafana disinkronkan dengan Prometheus melalui `docker-compose.yml` untuk dashboard monitoring yang lebih menarik
-"# muhammad_ivan_LspW-pipeline" 
+"# muhammad_ivan_LspW-pipeline"

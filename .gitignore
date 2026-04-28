@@ -26,9 +26,10 @@ ENV/
 env/
 .venv/
 
-# TFX artifacts
-tfx_run/
-serving_model/
+# TFX artifacts (Keep for submission)
+# tfx_run/
+# serving_model/
+# metadata/
 
 # Jupyter
 .ipynb_checkpoints/

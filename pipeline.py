@@ -36,9 +36,9 @@ TRANSFORM_MODULE_FILE = os.path.join(abspath, "modules", "transform.py")
 TRAINER_MODULE_FILE = os.path.join(abspath, "modules", "trainer.py")
 TUNER_MODULE_FILE = os.path.join(abspath, "modules", "tuner.py")
 
-SERVING_MODEL_DIR = "C:\\tfx_run\\serving_model\\" + PIPELINE_NAME
-PIPELINE_ROOT = "C:\\tfx_run\\tfx_artifacts"
-METADATA_PATH = "C:\\tfx_run\\metadata\\metadata.db"
+SERVING_MODEL_DIR = os.path.join(abspath, 'serving_model')
+PIPELINE_ROOT = os.path.join(abspath, PIPELINE_NAME)
+METADATA_PATH = os.path.join(abspath, 'metadata', 'metadata.db')
 
 TRAIN_STEPS = 100
 EVAL_STEPS = 50
@@ -207,7 +207,11 @@ def run_pipeline():
         beam_pipeline_args=BEAM_PIPELINE_ARGS
     )
 
+    print(f"Pipeline Root: {PIPELINE_ROOT}")
+    print(f"Metadata Path: {METADATA_PATH}")
+    print("Starting BeamDagRunner...")
     BeamDagRunner().run(pipeline=tfx_pipeline)
+    print("Pipeline execution finished.")
 
 
 if __name__ == '__main__':
