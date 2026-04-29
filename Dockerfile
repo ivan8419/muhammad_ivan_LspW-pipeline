@@ -8,9 +8,8 @@ RUN apt-get update --allow-releaseinfo-change && apt-get install -y --no-install
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy and install Python dependencies first (for layer caching)
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy and install ONLY the required Python dependencies for serving
+RUN pip install --no-cache-dir flask prometheus-client
 
 # Copy application files
 COPY . .
